@@ -11,7 +11,8 @@ void    megaphone(char *str)
     int n = strlen(str);
 
     for (int i = 0; i < n; i++)
-		str[i] = std::toupper(str[i]);
+        if (str[i] <='z' && str[i] >= 'a')
+            str[i] -= 32;
 }
 
 int main(int argc, char *argv[])

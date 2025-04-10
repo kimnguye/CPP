@@ -1,10 +1,16 @@
-NAME = friends
+NAME	= ex04
 
-SRCS = main.cpp Contact.cpp PhoneBook.cpp
+BONUS	= tester
 
-OBJS = $(SRCS:%.c=obj/%.o)
+SRCS	= main.cpp
 
-CC = c++ -Wall -Wextra -Werror -std=c++98
+SRCS_B	= tester.cpp
+
+OBJS	= $(SRCS:%.c=obj/%.o)
+
+OBJS_B	= $(SRCS_B:%.c=obj/%.o)
+
+CC		= c++ -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
@@ -15,14 +21,20 @@ clean:
 
 #supprimer les objets et les programmes
 fclean: clean
-	@rm -rf $(NAME)
+	@rm -rf $(NAME) $(BONUS)
 	@echo "remove pgm"
 
 re: fclean all
 
+b: $(BONUS)
+
 # Compilation du programme
 $(NAME): $(OBJS)
 	$(CC) -o $(NAME) $(OBJS)
+
+# Compilation du programme
+$(BONUS): $(OBJS_B)
+	$(CC) -o $(BONUS) $(OBJS_B)
 
 # Compilation des fichiers objets
 obj/%.o : %.cpp | obj

@@ -1,7 +1,6 @@
 #include "PhoneBook.hpp"
 #include <iostream>
 #include <limits>
-#include <iomanip>
 
 PhoneBook::PhoneBook(void)
 {
@@ -20,24 +19,43 @@ void	PhoneBook::add(Contact contact)
 {
 	if (this->i == 8)
 		this->i = 0;
-	this->tab[i].copy(contact);
+	this->tab[i].firstname = contact.firstname;
+	this->tab[i].lastname = contact.lastname;
+	this->tab[i].nickname = contact.nickname;
+	this->tab[i].phone = contact.phone;
+	this->tab[i].secret = contact.secret;
 	this->i++;
 }
 
-
-void	PhoneBook::index(int i) const
+void	format(std::string	str)
 {
-	std::cout << std::setfill (' ') << std::setw (10);
-	std::cout << i;
-	tab[i].idx_print();
+	int	n = str.length();
+
+	std::cout << "|";
+	while (n++ < 10)
+		std::cout << " ";
+	if (n > 10)
+	{
+		str = str.substr(0, 10);
+		str[9] = '.';
+	}
+	std::cout << str;
+}
+
+void	PhoneBook::index(int i)
+{
+	std::cout << "         " << i;
+	format(this->tab[i].firstname);
+	format(this->tab[i].lastname);
+	format(this->tab[i].nickname);
 	std::cout << std::endl;
 }
 
-void	PhoneBook::search(void) const
+void	PhoneBook::search(void)
 {
 	int	i;
 
-	if (this->tab[0].empty())
+	if (this->tab[0].firstname.empty())
 	{
 		std::cout << "\033[34mYour PhoneBook is empty 😢\033[0m" << std::endl;
 		return ;
@@ -46,39 +64,24 @@ void	PhoneBook::search(void) const
 	std::cout << "     index|first name| last name|  nickname" << std::endl;
 	for (i = 0; i < 8; i++)
 	{
-		if (this->tab[i].empty())
+		if (this->tab[i].firstname.empty())
 			break ;
 		this->index(i);
 	}
 	std::cout << "Enter the index:\033[0m" << std::endl;
-	while (42)
+	do
 	{
-		std::cin >> i;
-		if (!std::cin.fail() && !std::cin.eof() && i >= 0 && i <= 7)
-			break;
-		std::cout << "\033[34m❌ Incorrect index! Try again:\033[0m" << std::endl;
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cin >> i;
 	}
-	if (this->tab[i].empty())
-		std::cout << "\033[34mCannot find the contact 😔\033[0m" << std::endl;
-	else
-		this->tab[i].print();
+	while (std::cin.fail());
+	this->tab[i].print();
 }
 
-void	PhoneBook::fill(void)
+void	PhoneBook::printall(void)
 {
-	Contact		contact;
-
-	contact.default_fill();
-	for (int i = 0; i < 8; i++)
-		this->add(contact);
-	std::cout << "\033[34mPhoneBook is full of friends 🤩\033[0m" << std::endl;
-}
-
-void	PhoneBook::printall(void) const
-{
-	if (this->tab[0].empty())
+	if (this->tab[0].firstname.empty())
 	{
 		std::cout << "\033[34mYour PhoneBook is empty 😢\033[0m" << std::endl;
 		return ;

@@ -1,10 +1,10 @@
-NAME = friends
+NAME	= ex00
 
-SRCS = main.cpp Contact.cpp PhoneBook.cpp
+SRCS	= main.cpp Fixed.cpp
 
-OBJS = $(SRCS:%.c=obj/%.o)
+OBJS	= $(SRCS:%.c=obj/%.o)
 
-CC = c++ -Wall -Wextra -Werror -std=c++98
+CC		= c++ -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
