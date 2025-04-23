@@ -9,8 +9,11 @@
 
 - CPP02:
   - Forme canonique
+- CPP03: Notion d'heritage
+  - heritage en diamant (une classe herite de deux classes elles memes derivees d'une meme classe de base)
+  - compiler flags -Wshadow and -Wno-shadow
 - CPP04:
-  - Classes abstraites et interfaces (virtual, pure = 0)
+  - Classes abstraites et interfaces (virtual, methode pure = 0)
   - 3 niveaux d'acces: private, protected et public
 - CPP05: Exceptions
   - try, catch, throw, std::exception
