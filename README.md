@@ -6,3 +6,12 @@
 
 
 - I am proud of my CPP01-ex04. Go check it !
+
+- CPP02:
+  - Forme canonique
+- CPP04:
+  - Classes abstraites et interfaces (virtual, pure = 0)
+  - 3 niveaux d'acces: private, protected et public
+- CPP05: Exceptions
+  - try, catch, throw, std::exception
+  - std::ostream, overload of insertion "<<"
