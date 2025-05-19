@@ -20,3 +20,4 @@ CPP est un langage de programmation compilé derivé du langage C. Il permet de 
 - CPP05: Exceptions
   - try, catch, throw, std::exception
   - std::ostream, overload of insertion "<<"
+- CPP06: Cast
